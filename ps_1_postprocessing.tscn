@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwd1v63eswdif"]
+
+[ext_resource type="Shader" path="res://shaders/ps1Shader.gdshader" id="1_sagns"]
+[ext_resource type="PackedScene" uid="uid://nd5hrlulc16q" path="res://ambient.tscn" id="2_qje1i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mx41"]
+shader = ExtResource("1_sagns")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
+
+[node name="ps1_postprocessing" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_2mx41")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="ambient" parent="SubViewport" instance=ExtResource("2_qje1i")]
