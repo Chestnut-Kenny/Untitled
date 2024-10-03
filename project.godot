@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Untitled Game"
-run/main_scene="res://ps_1_postprocessing.tscn"
+run/main_scene="res://vhs_and_ps_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [dotnet]

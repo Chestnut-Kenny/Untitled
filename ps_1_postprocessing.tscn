@@ -7,8 +7,8 @@
 shader = ExtResource("1_sagns")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
-shader_parameter/colors = 12
-shader_parameter/dither_size = 1
+shader_parameter/colors = 16
+shader_parameter/dither_size = 6
 
 [node name="ps1_postprocessing" type="SubViewportContainer"]
 material = SubResource("ShaderMaterial_2mx41")

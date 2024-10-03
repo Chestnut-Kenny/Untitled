@@ -7,8 +7,14 @@ const ATTACKRANGE = 2.5
 var state_machine
 var health = 6
 
-@export var player_path := "/root/ps1_postprocessing/SubViewport/ambient/NavigationRegion3D/Player"
 
+# path ps1 Style -> @export var player_path := "/root/ps1_postprocessing/SubViewport/ambient/NavigationRegion3D/Player"
+
+# path vhs Sytle -> @export var player_path := "/root/vhs/CanvasLayer/ColorRect/ambient/NavigationRegion3D/Player"
+
+
+#path vhs and ps1 style combined ->
+@export var player_path := "/root/vhsAndPs1/SubViewportContainer/SubViewport/CanvasLayer/ColorRect/ambient/NavigationRegion3D/Player"
 @onready var nav_agent = $NavigationAgent3D
 @onready var animTree = $AnimationTree
 @onready var zombieSound: AudioStreamPlayer3D = $Zombie8

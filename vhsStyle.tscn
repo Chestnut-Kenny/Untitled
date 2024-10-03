@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbm2pvp55j3wv"]
+
+[ext_resource type="Shader" path="res://shaders/vhs2.gdshader" id="1_dhhmp"]
+[ext_resource type="Texture2D" uid="uid://8bssh5cjb08p" path="res://textures/XlscD8.jpg" id="2_ha6nj"]
+[ext_resource type="PackedScene" uid="uid://nd5hrlulc16q" path="res://ambient.tscn" id="2_qwqki"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y87e1"]
+shader = ExtResource("1_dhhmp")
+shader_parameter/vhs_resolution = Vector2(320, 240)
+shader_parameter/samples = 2
+shader_parameter/crease_noise = 1.0
+shader_parameter/crease_opacity = 0.5
+shader_parameter/filter_intensity = 0.1
+shader_parameter/tape_crease_smear = 0.2
+shader_parameter/tape_crease_intensity = 0.2
+shader_parameter/tape_crease_jitter = 0.1
+shader_parameter/tape_crease_speed = 0.5
+shader_parameter/tape_crease_discoloration = 1.0
+shader_parameter/bottom_border_thickness = 6.0
+shader_parameter/bottom_border_jitter = 6.0
+shader_parameter/noise_intensity = 0.2
+shader_parameter/noise_texture = ExtResource("2_ha6nj")
+
+[node name="vhs" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_y87e1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ambient" parent="CanvasLayer/ColorRect" instance=ExtResource("2_qwqki")]

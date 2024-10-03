@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccc71eekmy5y3"]
+
+[ext_resource type="PackedScene" uid="uid://nd5hrlulc16q" path="res://ambient.tscn" id="1_rbuib"]
+[ext_resource type="Shader" path="res://shaders/vhs2.gdshader" id="1_rko71"]
+[ext_resource type="Texture2D" uid="uid://8bssh5cjb08p" path="res://textures/XlscD8.jpg" id="2_k4q6j"]
+[ext_resource type="Shader" path="res://shaders/ps1Shader.gdshader" id="3_2alto"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6draw"]
+shader = ExtResource("3_2alto")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t6idb"]
+shader = ExtResource("1_rko71")
+shader_parameter/vhs_resolution = Vector2(320, 240)
+shader_parameter/samples = 2
+shader_parameter/crease_noise = 1.0
+shader_parameter/crease_opacity = 0.5
+shader_parameter/filter_intensity = 0.1
+shader_parameter/tape_crease_smear = 0.2
+shader_parameter/tape_crease_intensity = 0.2
+shader_parameter/tape_crease_jitter = 0.1
+shader_parameter/tape_crease_speed = 0.5
+shader_parameter/tape_crease_discoloration = 1.0
+shader_parameter/bottom_border_thickness = 6.0
+shader_parameter/bottom_border_jitter = 6.0
+shader_parameter/noise_intensity = 0.1
+shader_parameter/noise_texture = ExtResource("2_k4q6j")
+
+[node name="vhsAndPs1" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_6draw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 642)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+material = SubResource("ShaderMaterial_t6idb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ambient" parent="SubViewportContainer/SubViewport/CanvasLayer/ColorRect" instance=ExtResource("1_rbuib")]
